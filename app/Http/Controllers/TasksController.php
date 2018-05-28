@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 use App\Task; 
 
 class TasksController extends Controller
@@ -105,7 +103,9 @@ class TasksController extends Controller
         
         $task = Task::find($id);
         $task->content = $request->content;
+        $task->status = $request->status;
         $task->save();
+        
 
         return redirect('/');
     }
