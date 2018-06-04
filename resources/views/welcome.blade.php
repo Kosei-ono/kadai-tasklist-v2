@@ -65,17 +65,43 @@
         </style>
     </head>
     <body>
+    @extends('layouts.app')
+    
+    @section('content')
+    
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+        @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <div class="center jumbotron">
+                        <div class="text-center">
+                        <h1>Welcome</h1>{!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-primary']) !!}
+                        </div>
+                        </div>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
+            
+            @if (Auth::check())
+                <?php $user = Auth::user(); ?>
+                {{ $user->name }}
+            @else
+            <div class="center jumbotron">
+                <div class="text-center">
+                <h1>Welcome to the Microposts</h1>
+                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-primary']) !!}
+                </div>
+            </div>
+        @endif
+            
+            
+    @endsection    
+            
+            
 
             <div class="content">
                 <div class="title m-b-md">
@@ -93,3 +119,8 @@
         </div>
     </body>
 </html>
+
+
+
+
+   

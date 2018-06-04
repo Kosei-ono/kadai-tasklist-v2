@@ -38,7 +38,7 @@ class TasksController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *s
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
