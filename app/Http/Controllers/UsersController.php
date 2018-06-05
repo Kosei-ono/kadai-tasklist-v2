@@ -8,14 +8,7 @@ use App\User; // 追加
 
 class UsersController extends Controller
 {
-    public function index()
-    {
-        $users = User::all();
-
-        return view('users.index', [
-            'users' => $users,
-        ]);
-    }
+   
     
       public function index()
     {
@@ -33,6 +26,19 @@ class UsersController extends Controller
             'user' => $user,
         ]);
     }
-    
+     public function show($id)
+    {
+        $user = User::find($id);
+        $tastasks = $user->tastasks()->orderBy('created_at', 'desc')->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'tastasks' => $tastasks,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.show', $data);
+    }
     
 }
