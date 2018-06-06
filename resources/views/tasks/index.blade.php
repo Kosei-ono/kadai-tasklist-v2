@@ -6,22 +6,24 @@
 
  @if (count($tasks) > 0)
         <table class="table table-striped">
-            <thead>
+            <head>
                 <tr>
                     <th>id</th>
                     <th>ステータス</th>
                     <th>タスク</th>
+                    <th>user_id</th>
                 </tr>
-            </thead>
-            <tbody>
+            </head>
+            <body>
                 @foreach ($tasks as $task)
                     <tr>
                         <td>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!}</td>
                         <td>{{ $task->status }}</td>
                         <td>{{ $task->content }}</td>
+                        <td>{{ $task->user_id }}</td>
                     </tr>
                 @endforeach
-            </tbody>
+            </body>
         </table>
     @endif
     {!! link_to_route('tasks.create', '新規タスクの投稿', null, ['class' => 'btn btn-primary']) !!}
